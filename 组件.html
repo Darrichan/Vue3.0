@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello world</title>
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+
+<body>
+    <div id="root"></div>
+
+</body>
+<script>
+    const app = Vue.createApp({
+        template: `
+        <div>
+            <counter />
+            <counter />
+            <counter />
+            <counter />
+            <counter-parent />
+        </div>
+        `
+    })
+    app.component('counter-parent', {
+        template: '<counter />'
+    })
+    app.component('counter', {
+        data() {
+            return {
+                num: 1
+            }
+        },
+        template: '<div @click="num+=1">{{num}}</div>'
+    })
+    const vm = app.mount('#root')
+</script>
+
+</html>
